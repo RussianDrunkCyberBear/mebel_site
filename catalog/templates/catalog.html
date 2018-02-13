@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% load staticfiles %}
+
+{% block extra_head %}
+<link type="text/css" rel="stylesheet" href= "{% static 'css/catalog_styles.css' %}" >
+{% endblock %}
+
+
+{% block content %}
+    <div class="inner-wrapper">
+
+        {% block catalog-side-menu %}
+            {% include 'catalog-side-menu.html' %}
+        {% endblock %}
+
+        {% block catalog-icon-view %}
+            {% include 'catalog-icon-view.html' %}
+        {% endblock %}
+
+    </div>
+
+{% endblock %}

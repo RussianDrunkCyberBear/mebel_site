@@ -1,0 +1,22 @@
+{% block catalog-side-menu %}
+<!--div class="catalog-side-panel">
+    <ul class="catalog-elements">
+        {% for category in tree %}
+                <a href='/catalog/{{category.0.url_name}}'>
+                    
+                    <li 
+                        {% if category.0.id == cur_cat.id %} 
+                            class='active-cat' 
+                        {% endif %} >                   
+                        {% for ltr in category.1 %}
+                            &nbsp;
+                        {% endfor %}
+                        {{category.0.name}}
+                    </li>
+                   
+                </a>
+        {% endfor %}
+
+    </ul>
+</div-->
+{% endblock %}

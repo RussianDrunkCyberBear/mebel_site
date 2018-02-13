@@ -1,0 +1,34 @@
+{% block material-cat-view %}
+ 
+    <div class="material-cat-view">
+        <!--{% for category in cur_material_cat %}
+            <div class="single-material-category">
+                <h2>
+                    {{category.name}}
+                </h2>
+                <div class="material-icons">
+                    {% for material in materials %}
+                        {% if material.category == category %}
+                                <a class='material-img' rel="example_group" href="{{material.material_image.url}}" title="{{material.category}}: {{material.name}}"><img src="{{material.material_image.url}}"></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}-->
+        {% for category in cur_fitting_cat %}
+            <div class="single-material-category">
+                <h2>
+                    {{category.name}}
+                </h2>
+                <div class="material-icons">
+                    {% for fitting in fittings %}
+                        {% if fitting.category == category %}
+                                <a class='material-img' rel="example_group" href="{{fitting.fitting_image.url}}" title="{{fitting.category}}: {{fitting.name}}"><img src="{{fitting.fitting_image.url}}"></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

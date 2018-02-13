@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_head %}
+<link type="text/css" rel="stylesheet" href= "{% static 'css/catalog_styles.css' %}" >
+<link type="text/css" rel="stylesheet" href= "{% static 'css/product_card_styles.css' %}" >
+{% endblock %}
+
+{% block content %}
+    {% block catalog-side-menu %}
+        {% include 'catalog-side-menu.html' %}
+    {% endblock %}
+
+<div class="product-card-view">
+	<div class="catalog-path">
+        <a href="/catalog/">Каталог</a>
+            {% for item in path %}
+                <span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span><a href="/catalog/{{item.url_name}}">{{item.name}}</a>
+            {% endfor %}
+    </div>
+
+	<h2>
+		{{product.name|upper}}
+	</h2>
+
+	{% if product.in_stock %}
+		{% if product.stock_descript %}
+			<div class="prod-stock">
+				<h3>ВНИМАНИЕ АКЦИЯ!</h3>
+				<div>
+					{{ product.stock_descript }}
+				</div>
+			</div>
+		{% else %}
+			<div class="prod-stock">
+				<h3>АКЦИОННЫЙ ТОВАР!</h3>
+				<div>
+					позвоните чтобы узнать подробности
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
+
+	<div class='description'>
+		{%if product.description%}
+			{# <h4>Описание<hr></h4> #}
+			<p>{{product.description}}</p>
+		{% endif %}
+	</div>
+	<div class='images-and-descript'>
+		<div class="product-images-container">
+			<div class="product-images">
+				<a href="{{prod_main_image.url}}" class="prod-main-img-container jqImgViewer-main-img-cont">
+					<img src="{{prod_main_image.url}}">
+					<div class="jqImgViewer-arrow jqImgViewer-arrow-left"><img src="{% static 'images/slider-arrow-left.png' %}"></div>
+					<div class="jqImgViewer-arrow jqImgViewer-arrow-right"><img src="{% static 'images/slider-arrow-right.png' %}"></div>
+				</a>
+				<a href="{{prod_main_image.url}}" class="prod-othet-img-container jqImgViewer-other-img-cont jqImgViewer-selected-item"><img src="{{prod_main_image.url}}"></a>
+				{% for image in prod_images %}
+					<a href="{{image.image.url}}" class="prod-othet-img-container jqImgViewer-other-img-cont"><img src="{{image.image.url}}"></a>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="prod-features-cont">
+			<a href="/contacts.html" class="prod-feature">
+				<img src="{% static 'images/seven.png' %}">
+				<h4>ИЗГОТОВИМ ЗА<br>7 ДНЕЙ</h4>
+			</a>
+			<a href="/contacts.html#info-proekt"class="prod-feature">
+				<img src="{% static 'images/design.png' %}">
+				<h4>ЗАМЕР И ДИЗАЙН<br>БЕСПЛАТНО</h4>
+			</a>
+			<a href="/contacts.html#info-dostavka" class="prod-feature">
+				<img src="{% static 'images/dostavka.png' %}">
+				<h4>БЕСПЛАТНАЯ<br>ДОСТАВКА</h4>
+			</a>
+			<a href="/contacts.html#mobofice" class="prod-feature">
+				<img src="{% static 'images/mobile_office.png' %}">
+				<h4>МОБИЛЬНЫЙ<br>ОФИС</h4>
+			</a>
+		</div>
+	</div>
+
+		{% if product.length or product.width or product.height %}
+			<div class='sizes'>
+				<h4>Размеры<hr></h4>
+				{% if product.length %}
+					Длина: {{product.length}} мм /
+				{% endif %}
+				{% if product.width %}
+					Ширина: {{product.width}} мм /
+				{% endif %}
+				{% if product.height %}
+					Высота: {{product.height}} мм
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{% if mat_text or mat_face or mat_deck or mat_coat %}
+			<div class='mats-cont'>
+				<h4>Материалы<hr></h4>
+					{% if mat_text %}
+						<div class='size-mats'>
+							{{ mat_text }}
+							<br>
+						</div>
+					{% endif %}
+					
+					{% if mat_face %}
+						<div class='mats'>
+							<h5>Материал фасада</h5>
+							{% for mat in mat_face %}
+								<div class='mat-img' title='{{mat.category.name}}: {{mat.name}}'>
+									<img src="{{mat.material_image.url}}">
+								</div>
+							{% endfor %}
+							<br>
+						</div>
+					{% endif %}
+
+					{% if mat_deck %}
+						<div class='mats'>
+							<h5>Материал столешницы</h5>
+							{% for mat in mat_deck %}
+								<div class='mat-img' title='{{mat.category.name}}: {{mat.name}}'>
+									<img src="{{mat.material_image.url}}">
+								</div>
+							{% endfor %}
+							<br>
+						</div>
+					{% endif %}
+
+					{% if mat_coat %}
+						<div class='mats'>
+							<h5>Материал обивки</h5>
+							{% for mat in mat_coat %}
+								<div class='mat-img' title='{{mat.category.name}}: {{mat.name}}'>
+									<img src="{{mat.material_image.url}}">
+								</div>
+							{% endfor %}
+							<br>
+						</div>
+					{% endif %}
+
+					{% if mat_others %}
+						<div class='mats'>
+							<h5>Материалы прочие</h5>
+							{% for mat in mat_others %}
+								<div class='mat-img' title='{{mat.category.name}}: {{mat.name}}'>
+									<img src="{{mat.material_image.url}}">
+								</div>
+							{% endfor %}
+							<br>
+						</div>
+					{% endif %}
+				</div>
+		{% endif %}
+
+
+	
+	{% if fit_1 or fit_2 or fit_3 or fit_4 %}
+		<div class="furn-cont">
+			<h4>Фурнитура<hr></h4>
+
+			{% if fit_1 %}
+				<div class='furn'>	
+					{% for fit in fit_1 %}
+						<div class='mat-img' title='{{fit.category.name}}: {{fit.name}}'>
+							<img src="{{fit.fitting_image.url}}">
+						</div>
+					{% endfor %}
+					<br><br>
+				</div>
+			{% endif %}
+
+			{% if fit_2 %}
+				<div class='furn'>
+					{% for fit in fit_2 %}
+						<div class='mat-img' title='{{fit.category.name}}: {{fit.name}}'>
+							<img src="{{fit.fitting_image.url}}">
+						</div>
+					{% endfor %}
+					<br><br>
+				</div>
+			{% endif %}
+
+			{% if fit_3 %}
+				<div class='furn'>
+					{% for fit in fit_3 %}
+						<div class='mat-img' title='{{fit.category.name}}: {{fit.name}}'>
+							<img src="{{fit.fitting_image.url}}">
+						</div>
+					{% endfor %}
+					<br><br>
+				</div>
+			{% endif %}
+
+			{% if fit_4 %}
+				<div class='furn'>
+					{% for fit in fit_4 %}
+						<div class='mat-img' title='{{fit.category.name}}: {{fit.name}}'>
+							<img src="{{fit.fitting_image.url}}">
+						</div>
+					{% endfor %}
+					<br><br>
+				</div>
+			{% endif %}
+
+		</div>
+	{% endif %}
+
+    
+    {% if products_in_cat %}
+	    <div class="slider-frame">
+	        <div class="slider-title">Похожие товары</div>
+	        <div class="slide-content">
+	            {% for product in products_in_cat %}
+	                <a class="slider-element" href="/product/{{ product.id }}">
+                    {% if product.main_image %}
+                        <img src="{{product.main_image.image.url}}">
+                    {% else %}
+                        <img src="{{ MEDIA_URL }}/default/NO_IMAGE.png">
+                    {% endif %}
+	                    <div class="slider-prod-name">
+	                        {{product.name|upper}}
+	                    </div>
+	                </a>
+	            {% endfor %}>
+	        </div>
+	        <div class="arrow arrow-left"><img src="{% static 'images/slider-arrow-left.png' %}"></div>
+	        <div class="arrow arrow-right"><img src="{% static 'images/slider-arrow-right.png' %}"></div>
+	    </div>
+    {% endif %}
+
+</div>
+
+
+<script type="text/javascript" src="{% static 'js/jq_img_viewer_w_preview.js' %}"></script>
+
+
+{% endblock %}

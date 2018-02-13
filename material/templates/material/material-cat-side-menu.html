@@ -1,0 +1,21 @@
+{% block material-cat-side-menu %}
+<div class="material-cat-side-panel">
+    <ul class="material-cat-elements">
+        <!--{% for category in material_cats %}
+                <a href='/material-cat/{{category.url_name}}'>
+                    <li {% if category.url_name in request.path %} class='active-material-cat' {% endif %} >
+                        {{category.name}}
+                    </li>
+                </a>
+        {% endfor %}-->
+        {% for category in fitting_cats %}
+                <a href='/material-cat/{{category.url_name}}'>
+                    <li {% if category.url_name in request.path %} class='active-material-cat' {% endif %} >
+                        {{category.name}}
+                    </li>
+                </a>
+        {% endfor %}
+
+    </ul>
+</div>
+{% endblock %}

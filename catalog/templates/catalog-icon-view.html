@@ -1,0 +1,108 @@
+{% block catalog-icon-view %}
+<div class="catlog-view">
+    <div class="catalog-path">
+        <a href="/catalog/">Каталог</a>
+            {% for item in path %}
+                <span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span><a href="/catalog/{{item.url_name}}">{{item.name}}</a>
+            {% endfor %}
+    </div>
+    <!--div class="cat-icons">
+        {% for category in categories %}
+            {% if category.parent_cat.url_name == current_category_url_name %}
+                <a href="/catalog/{{ category.url_name }}">
+                    <img src="{{category.image.url}}">
+                    <div>{{ category.name }}</div>
+                </a>
+            {% endif %}
+        {% endfor %}
+        &#160;
+    </div-->
+
+    <div class="cat-icons">
+        {% for category in categories %}
+            {% if category.parent_cat == None %}     
+                <a
+                    class='
+                        {% if current_category_url_name in category.url_name %}
+                            active-categ
+                        {% endif %}
+                        {% if "Kuhni" in category.url_name and "Kuhni" in current_category_url_name %}
+                            active-categ
+                        {% endif %}'  
+                    href="/catalog/{{ category.url_name }}"
+                >
+                    <img src="{{category.image.url}}">
+                    <div>{{ category.name }}</div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if "Kuhni" in current_category_url_name %}
+        <div class="kuhni_subcats">
+            {% for category in categories %}
+                {% if "Kuhni" in category.parent_cat.url_name %}
+                    <a 
+                        href="/catalog/{{ category.url_name }}"
+                        class='
+                            {% if current_category_url_name in category.url_name %}
+                                    active-subcat
+                            {% endif %}
+                            '
+                    >
+                    {{ category.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="products-icons">
+        <!--{% for product in products %}
+                <a href="/product/{{ product.id }}">
+                    <div>
+                    {% if product.main_image %}
+                        <img src="{{product.main_image.url}}">
+                    {% else %}
+                        <img src="{{ MEDIA_URL }}/default/NO_IMAGE.png">
+                    {% endif %}
+                    {% if product.in_stock %}
+                        <div class="prod-ico-stock">
+                            АКЦИЯ
+                        </div>
+                    {% endif %}
+                        <div class="prod-name">
+                            {{product.name|upper}}
+                        </div>
+                    </div>
+                </a>
+        {% endfor %}-->
+            <div class="inner-wrapper">
+                {% for product in products %}
+                    <div class='product-item-outer'>
+                        <a class='product-item-inner' href="/product/{{ product.id }}">
+                            {% if product.main_image %}
+                                <img src="{{product.main_image.url}}">
+                            {% else %}
+                                <img src="{{ MEDIA_URL }}/default/NO_IMAGE.png">
+                            {% endif %}
+                            {% if product.in_stock %}
+                                <!--div class="prod-ico-stock">
+                                    АКЦИЯ
+                                </div-->
+                            {% endif %}
+                                <div class="product-item-name">
+                                    {{product.name|upper}}
+                                </div>
+                            {% if product.description %}
+                                <div class="product-item-shortdescript">
+                                    {{product.description|truncatechars:120}}
+                                </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="spacer" style="clear: both;"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,160 @@
+.porf-header {
+	display: block;
+	width: 100%;
+	padding-bottom: 10px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 2rem;
+    color: #02612a;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, transparent 0%, #008f3c 50%, transparent 100%);
+    border-image-slice: 1;
+}
+
+.portf-images-container {
+    display: block;
+    min-height: 100px;
+    float: left;
+    width: 60%;
+    min-width: 600px;
+    margin-bottom: 30px;
+}
+
+.portf-images {
+	display: block;
+	background-color: rgba(255,255,255,0.7);
+	box-sizing: border-box;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	width: 750px;
+	margin: auto;
+	font-size: 0;
+}
+
+.portf-main-img-container {
+	display: block;
+	position: relative;
+}
+
+
+.portf-main-img-container img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
+
+.jqImgViewer-arrow {
+    display: block;
+    width: 60px;
+    height: 100px;
+    padding-top: 40px;
+    position: absolute;
+    top: calc(50% - 50px);
+}
+
+.jqImgViewer-arrow img {
+    height: 60px;
+    opacity: 0.5;
+}
+
+.jqImgViewer-arrow-left {
+	left: 0;
+	border-radius: 0 10px 10px 0;
+}
+
+.jqImgViewer-arrow-right {
+	right: 0;
+	border-radius: 10px 0 0 10px;
+}
+
+.jqImgViewer-arrow:hover {
+	background-color: rgba(0,0,0,0.8);
+}
+
+.jqImgViewer-arrow:hover img {
+	opacity: 1;
+}
+
+.portf-othet-img-container {
+	/*display: block;*/
+	display: inline-block;
+	width: 150px;
+	height: 120px;
+	/*float: left;*/
+	position: relative;
+}
+
+.portf-othet-img-container img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    outline: 1px solid white;
+    outline-offset: -1px;
+    opacity: 0.7;
+     transition: opacity 500ms ease-out; ;
+    -webkit-transition: opacity 500ms ease-out; 
+	-moz-transition: opacity 500ms ease-out;
+	-o-transition: opacity 500ms ease-out;
+}
+
+
+.portf-othet-img-container:hover img {
+	opacity: 1;
+	outline: 1px solid black;
+}
+
+/*.selested-img {
+	opacity: 1;
+	outline: 1px solid black;
+}*/
+.jqImgViewer-selected-item img{
+	opacity: 1;
+	outline: 1px solid black;
+}
+
+.portf-descript {
+	display: block;
+	min-width: 300px;
+	padding: 0 10px;
+	overflow: hidden;
+	text-indent: 1.5em;
+}
+
+.portf-descript h4 {
+	display: block;
+	margin: 0;
+	color: #555555;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.portf-descript hr {
+	border: none;
+    background-color: var(--green-main-color);
+    height: 1px;
+}
+
+.portf-descript div {
+	font-family: 'Roboto Slab', serif;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 940px) {
+	.portf-images-container { width: 100%; }
+	.portf-descript { padding: 0 calc(calc(100% - 580px) / 2); margin-top: 30px;}
+}
+
+@media screen and (max-width: 1400px) {
+	.portf-images { width: 600px; }
+}
+@media screen and (max-width: 990px) {
+	.portf-images { width: 600px; }
+}
+@media screen and (max-width: 600px) {
+	.portf-images { width: 100%; max-width: 600px; }
+}

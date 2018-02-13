@@ -1,0 +1,122 @@
+﻿<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&amp;subset=cyrillic" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+		<link href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=cyrillic" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+		{% load staticfiles %}
+		<link type="text/css" rel="stylesheet" href= "{% static 'css/base_styles.css' %}" >
+		<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+		<script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+		{% block extra_head %}
+		{% endblock extra_head %}
+	
+	</head>
+	
+	<body>
+		<header class="header">
+			<div class="inner-wrapper">
+				<div class="header-logo">
+					<img src="{% static 'images/berryhouse_whitelogo.png' %}">
+				</div>
+				<div class="header-contacts">
+					+7 (499) 390-777-8<br>+7 (925) 576-14-99<br><span>info@dommebel-citi.ru</span>
+				</div>
+			</div>
+		</header>
+
+		<nav class="top-nav"  id="stick_menu">
+			<div class="inner-wrapper">
+				<div class="stick-nav-logo">
+					<img src="{% static 'images/berryhouse_whitelogo.png' %}">
+				</div>
+				<div class="stick-nav-phone">
+					+7 (499) 390-777-8
+				</div>
+				<div class="nav">
+					<a href="/index.html" class="nav-btn">ГЛАВНАЯ<div class="nav-btn-hov"></div></a>
+					<a href="/catalog/" class="nav-btn">КАТАЛОГ<div class="nav-btn-hov"></div></a>
+					<a href="/material-cat/" class="nav-btn">ФУРНИТУРА<div class="nav-btn-hov"></div></a>
+					<a href="/index.html#about"class="nav-btn">О КОМПАНИИ<div class="nav-btn-hov"></div></a>
+				</div>
+			</div>
+		</nav>
+			
+			
+			<div class="content">
+					{% block content %}
+					{% endblock content %}				
+			</div>
+
+		<div class="callback-form-hidden">
+			<form method="post" action="javascript:void(null);" onsubmit="callback_form_submit();" id="callback_form" class="show_toogle" name="phone" style="display: block;">
+				<label for="phone">Напишите свой номер и мы <br>обязательно Вам перезвоним!</label>
+				<input type="tel" maxlength="16" placeholder="+7 999 999-99-99" required="true" id="phone" pattern="^\+7?\s?[0-9]{3}\s?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" name="phone">
+				<button type="submit">Заказать звонок !</button>
+			</form>
+			<div class="callback-btn pulsing"><img src="{% static "images/callme.png" %}"></div>
+			<div class="close-callback-form">X</div>
+		</div>
+		<!--div class="callback-btn pulsing"><img src="{% static "images/callme.png" %}"></div-->
+			
+		<footer>
+			<div class="inner-wrapper">
+				<div class="footer-sitemap">
+					<h4>Карта сайта</h4>
+					<a href="/index.html" >Главная</a>
+					<br><a href="/catalog/">Каталог</a>
+					<br><a href="/material-cat/">Фурнитура</a>
+					<br><a href="/portfolio/">Наше портфолио</a>
+					<br><a href="/contacts.html">Контакты</a>
+				</div>
+				<div class="footer-contacts">
+					<h4>Наши координаты</h4>
+					+7 (499) 390-777-8<br>
+					+7 (925) 576-14-99<br>
+					<span>info@dommebel-citi.ru</span>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var start_pos=$('#stick_menu').offset().top;
+	 	$(window).scroll(function(){
+	  		if ($(window).scrollTop()>=start_pos) {
+	      		if ($('#stick_menu').hasClass()==false) $('#stick_menu').addClass('to-top-nav');
+	  		}
+	  		else $('#stick_menu').removeClass('to-top-nav');
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	 	$('.callback-btn').click( function() {
+	 		$(this).removeClass('pulsing');
+	 		$(this)
+	 			.parent()
+	 			.removeClass('callback-form-hidden')
+	 			.addClass('callback-form-expanded');
+	 		$('.callback-form-expanded').css({'overflow':'hidden'});
+	 		setTimeout(function(){
+	 			$('.callback-form-expanded').css({'overflow':'visible'});
+	 			} ,500)
+	 	});
+
+	 	$('.close-callback-form').click( function() {
+	 		$(this)
+	 			.parent()
+	 			.addClass('callback-form-hidden')
+	 			.removeClass('callback-form-expanded');
+	 		$('.callback-btn').addClass('pulsing');
+	 	});
+
+	});
+</script>
+
+</html>

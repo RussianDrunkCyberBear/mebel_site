@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_head %}
+<link type="text/css" rel="stylesheet" href= "{% static 'css/portfolio_cat_styles.css' %}" >
+{% endblock %}
+
+{% block content %}
+
+	{% for item in portfolios %}
+		<div class="portf-item-outer">
+			<a class="portf-item-inner" href='/portfolio/{{item.id}}'>
+				<img src='{{item.main_image.image.url}}'>
+				<div class="portf-item-name">
+					{{ item.name }}
+				</div>
+				{% if item.description %}
+					<div class="portf-item-shortdescript">
+						{{ item.description|truncatechars:100 }}
+					</div>
+				{% endif %}
+			</a>
+		</div>
+	{% endfor %}
+	
+
+{% endblock %}
