@@ -311,7 +311,19 @@
 	display: block;
 	background-color: white;
 	width: 100%;
-	background-image: url('/images/geometric_pattern_1.jpg');
+	position: relative;
+	z-index: 1;
+}
+.products_in_cat:before {
+    /*background-image: url("{% static 'images/geometric_pattern_1.jpg' %}");*/
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .2;
 }
 .slider-frame {
 	display: block;

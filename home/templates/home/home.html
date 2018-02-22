@@ -83,28 +83,23 @@
 <div class="portf-icons">
     <div class="portf-title">НАШИ РАБОТЫ</div>
     <div class="inner-wrapper">
-        <div class="portf-item-outer">
-            <a class="portf-item-inner">
-                <img src="{% static 'images/kdpv_2_ps.jpg' %}">
-                <div class="portf-item-name">
-                    Товар
-                </div>
-                    <div class="portf-item-shortdescript">
-                        hsgjskhksljgskldjghksj
+        {% for product in products %}
+            <div class="portf-item-outer">
+                <a class="portf-item-inner" href="/product/{{ product.id }}">
+                    {% if product.main_image %}
+                        <img src="{{ product.main_image.url }}">
+                    {% else %}
+                        <img src="{{ MEDIA_URL }}/default/NO_IMAGE.png">
+                    {% endif %}
+                    <div class="portf-item-name">
+                        {{product.name|upper}}
                     </div>
-            </a>
-        </div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
-        <div class="portf-item-outer"><a class="portf-item-inner"><img src='kdpv_2_ps.jpg'><div class="portf-item-name">Товар</div><div class="portf-item-shortdescript">hsgjskhksljgskldjghksj</div></a></div>
+                    <div class="portf-item-shortdescript">
+                        {{product.description|truncatechars:120}}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
         <div class="spacer" style="clear: both;"></div>
         <a href="/catalog/catid25_Kuhni/" class="to-catalog-btn">ЕЩЕ БОЛЬШЕ МЕБЕЛИ В КАТАЛОГЕ<br><span>...</span></a>
     </div>
@@ -158,12 +153,12 @@
         Так же вы можете отправить свой вопрос, пожелание, или отзыв в форме ниже
         <div class="fdbk_form">
             <div class="fdbk_contact">
-                <input type="text" placeholder="Ваше имя">
+                <input type="text" placeholder="Ваше имя *">
                 <input type="text" placeholder="+7 XXX XXXXXXX">
                 <input type="text" placeholder="E-mail">
             </div>
             <div class="fdbk_msg">
-                <textarea type="text" placeholder="Сообщение"></textarea>
+                <textarea type="text" placeholder="Сообщение *"></textarea>
             </div>
             <input type="submit" value="Отправить" class="submit-btn">
         </div>

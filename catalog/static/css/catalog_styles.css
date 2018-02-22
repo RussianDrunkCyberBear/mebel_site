@@ -1,8 +1,6 @@
 .catalog-side-panel {
 	width: 20%;
 	min-width: 250px;
-	/*background-color: red;*/
-	/*background-color: red;*/
 	float: left;
 	min-height: 300px;
     overflow: hidden;
@@ -331,6 +329,7 @@
     width: 320px;
     margin: auto;
     padding-top: 10px;
+    position: relative;
 /*  border: 2px green solid;*/
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     box-sizing: border-box;
@@ -348,6 +347,33 @@
     -webkit-transition: outline-color 500ms ease-out; 
     -moz-transition: outline-color 500ms ease-out;
     -o-transition: outline-color 500ms ease-out;
+    object-fit: cover;
+}
+.prod-ico-stock {
+    display: block;
+    width: 100px;
+    height: 100px;
+    -webkit-clip-path: polygon(0 0, 100% 100%, 100% 0);
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    line-height: 40px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    /*border: 1px solid white;*/
+    box-sizing: border-box;
+    background-color: hsla(0, 84%, 62%, 1);
+    /*background-image: linear-gradient(to bottom, rgba(150,0,0,1), rgba(250,0,0,1), rgba(150,0,0,1));*/
+}
+.prod-ico-stock span {
+    display: block;
+    -webkit-transform: rotate(45deg) translate(18px,3px); 
+    -moz-transform: rotate(45deg) translate(18px,3px);    
+    transform: rotate(45deg) translate(18px,3px);
 }
 .product-item-name {
     display: block;

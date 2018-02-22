@@ -190,6 +190,7 @@
     max-width: 95%;
     outline: 6px solid rgba(255, 255, 255, 0.4);
     outline-offset: -6px;
+    object-fit: cover;
     transition: outline-color 500ms ease-out; ;
     -webkit-transition: outline-color 500ms ease-out; 
     -moz-transition: outline-color 500ms ease-out;

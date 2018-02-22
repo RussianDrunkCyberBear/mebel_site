@@ -6,17 +6,6 @@
                 <span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span><a href="/catalog/{{item.url_name}}">{{item.name}}</a>
             {% endfor %}
     </div>
-    <!--div class="cat-icons">
-        {% for category in categories %}
-            {% if category.parent_cat.url_name == current_category_url_name %}
-                <a href="/catalog/{{ category.url_name }}">
-                    <img src="{{category.image.url}}">
-                    <div>{{ category.name }}</div>
-                </a>
-            {% endif %}
-        {% endfor %}
-        &#160;
-    </div-->
 
     <div class="cat-icons">
         {% for category in categories %}
@@ -86,9 +75,9 @@
                                 <img src="{{ MEDIA_URL }}/default/NO_IMAGE.png">
                             {% endif %}
                             {% if product.in_stock %}
-                                <!--div class="prod-ico-stock">
-                                    АКЦИЯ
-                                </div-->
+                                <div class="prod-ico-stock">
+                                    <span>АКЦИЯ</span>
+                                </div>
                             {% endif %}
                                 <div class="product-item-name">
                                     {{product.name|upper}}
